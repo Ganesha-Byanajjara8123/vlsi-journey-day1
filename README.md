@@ -8,6 +8,9 @@
 This repository contains a _clean, synthesizable_ 4-bit ALU (Arithmetic Logic Unit) implemented in Verilog, together with a self-checking testbench and simulation artifacts.  
 The ALU supports basic arithmetic and logical operations and provides flags for SLT (set-less-than) and Zero. This mini-project demonstrates RTL coding discipline, combinational logic, and verification basics suitable for an entry-level VLSI/verification portfolio.
 
+“ADD/SUB are treated as unsigned arithmetic (4-bit truncated).
+SLT uses signed 4-bit comparison.”
+
 ---
 
 ## Features / Supported operations
