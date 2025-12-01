@@ -68,7 +68,9 @@ Waveform screenshot:
 Output summary from Tcl console:(screenshot images)
 <img width="927" height="765" alt="Screenshot 2025-12-01 234915" src="https://github.com/user-attachments/assets/96acc2fb-eb51-4dd6-89fe-6b200f9813fb" />
 <img width="865" height="765" alt="Screenshot 2025-12-01 234949" src="https://github.com/user-attachments/assets/1a809df6-0688-4494-b43e-4a4df08ae134" />
-<img width="1278" height="370" alt="Screenshot 2025-12-01 235025" src="https://github.com/user-attachments/assets/226f30e8-e82f-4073-8812-e152096490cc" />
+<img width="329" height="415" alt="image" src="https://github.com/user-attachments/assets/6d5774df-386b-401a-975c-d6d91ac0de6d" />
+<img width="646" height="205" alt="image" src="https://github.com/user-attachments/assets/ce033fed-74b0-45c1-937a-d9d339f26291" />
+
 
 
 
