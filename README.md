@@ -45,3 +45,5 @@ SLT uses signed 4-bit comparison.”
 Vivado==>create project==>Add source ==> Create file(ALU.v-design & ALU_TB.v-simulation)==>wirte the codes==>run simulation==>get waveform
 
 
+
+
