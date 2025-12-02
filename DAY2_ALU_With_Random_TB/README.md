@@ -1,5 +1,5 @@
 
-Day-2 title
+# vlsi-journey-day2
 “Day 2 — Randomized Testing + Functional Coverage for ALU”
 
 What’s new in Day-2
