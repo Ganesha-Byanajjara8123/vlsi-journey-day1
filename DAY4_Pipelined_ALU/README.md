@@ -1,4 +1,4 @@
-DAY-4 — Pipelined ALU (1-Cycle Latency + Valid Handshake + Scoreboard Verification)
+##**DAY-4 — Pipelined ALU (1-Cycle Latency + Valid Handshake + Scoreboard Verification)**
 🔥 Overview
 
 In Day-4, we upgraded the ALU from a simple combinational design (Day1–Day3) into a synchronous, pipelined ALU with one-cycle latency.
@@ -17,6 +17,7 @@ Built a latency-aware scoreboard (essential in real verification/UVM)
 Achieved 100% PASS on directed + random tests
 
 🧠 What I Learned (Core Concepts)
+
 ✔ 1. Why pipelining is required
 
 Real hardware cannot be purely combinational for everything.
