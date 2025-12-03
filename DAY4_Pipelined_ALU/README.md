@@ -44,7 +44,10 @@ Next cycle, when out_valid=1, we compare DUT vs expected.
 <img width="1892" height="912" alt="DAY4 1 (2)" src="https://github.com/user-attachments/assets/679a3b81-7dbc-4354-b773-b8bc4898ddf5" />
 <img width="1889" height="583" alt="DAY4 1 (1)" src="https://github.com/user-attachments/assets/9a97f190-7778-4f5d-88d8-d764de9b1705" />
 
-##Tcl consol
+
+
+
+##**Tcl consol**
 <img width="718" height="847" alt="DAY4TCL" src="https://github.com/user-attachments/assets/45a660fa-4022-425b-a44f-e77bbdc4ade9" />
 <img width="1451" height="607" alt="DAY-4Tcl" src="https://github.com/user-attachments/assets/02a0a75a-e006-4c6e-9331-db201972d9f7" />
 
