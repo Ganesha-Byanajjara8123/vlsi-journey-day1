@@ -22,8 +22,8 @@
 
 #Tcl console output images
 <img width="927" height="765" alt="Screenshot 2025-12-01 234915" src="https://github.com/user-attachments/assets/c00ef6aa-7d73-4ba6-9631-3f77786991d5" />
-<img width="1278" height="370" alt="Screenshot 2025-12-01 235025" src="https://github.com/user-attachments/assets/c934cf77-5384-46e0-bb8d-c5b70d54de82" />
 <img width="1278" height="370" alt="Screenshot 2025-12-01 235025" src="https://github.com/user-attachments/assets/ea38d045-e96a-41c9-b5c8-6304fbe201d3" />
+<img width="1278" height="370" alt="Screenshot 2025-12-01 235025" src="https://github.com/user-attachments/assets/c934cf77-5384-46e0-bb8d-c5b70d54de82" />
 
 
 
