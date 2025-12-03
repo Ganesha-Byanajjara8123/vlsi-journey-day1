@@ -1,1 +1,13 @@
+##COVERPAGE_REPORT
+Metric,Value
+ADD,9
+SUB,7
+AND,5
+OR,6
+XOR,8
+SLT,10
+SLT_true,2
+SLT_false,8
+CARRY_true,8
+OVF_true,4
 
