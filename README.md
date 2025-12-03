@@ -2,7 +2,7 @@
 
 <img width="1909" height="709" alt="Screenshot 2025-11-30 111842" src="https://github.com/user-attachments/assets/0d0f0aff-944f-453e-9998-ee8acbb0a126" />
 
-# 4-bit ALU — Project Documentation
+# 4-bit ALU — Project Documentationefr
 
 ## Project summary
 This repository contains a _clean, synthesizable_ 4-bit ALU (Arithmetic Logic Unityj) implemented in Verilog, together with a self-checking testbench and simulation artifacts.  
