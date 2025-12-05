@@ -20,20 +20,7 @@ Full self-checking testbench with random testing
 
 This version resembles what real RISC architectures use in pipeline execute stages.
 
-Supported Operations
-Opcode (hex)	Operation	Description
-0	ADD	A + B
-1	SUB	A - B
-2	AND	A & B
-3	OR	`A
-4	XOR	A ^ B
-5	SLT	Set-Less-Than (signed compare)
-6	SHIFT, ROT	Funct selects:
-00 = SLL
-01 = SRL
-10 = SRA
-11 = ROL
-7	SHIFT, ROT	Same structure but using rotates and arithmetic shifts
+
 
 Shifts and rotates use only B[1:0] to determine amount (0–3).
 
@@ -47,7 +34,7 @@ These flags are essential in processor design (branch conditions, error detectio
 
 
 
-How to Simulate (Vivado)
+##How to Simulate (Vivado)
 
 Create new project
 
