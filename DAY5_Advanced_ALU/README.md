@@ -22,6 +22,8 @@ This version resembles what real RISC architectures use in pipeline execute stag
 
 
 
+
+
 Shifts and rotates use only B[1:0] to determine amount (0–3).
 
 Status Flags
@@ -31,6 +33,8 @@ Neg	Most significant bit = 1 (signed negative)
 Parity	XOR reduction → 1 means odd number of 1s
 
 These flags are essential in processor design (branch conditions, error detection, etc).
+
+
 
 
 
@@ -49,6 +53,8 @@ Set ALU_Day5_TB.v as top module
 Run simulation → You should see:
 
 ==== TEST COMPLETE. Errors=0 ====
+
+
 
 ##**Waveform Snapshot**:
 
