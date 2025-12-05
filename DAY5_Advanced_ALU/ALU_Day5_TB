@@ -1,1 +1,128 @@
+`timescale 1ns/1ps
+
+module ALU_Day5_TB;
+
+    reg  [3:0] A, B, Op;
+    wire [3:0] Result;
+    wire       Zero, Neg, Parity, SLT;
+
+    // DUT
+    ALU_Day5 dut (
+        .A(A), .B(B), .OpCode(Op),
+        .Result(Result),
+        .Zero_Flag(Zero),
+        .Negative_Flag(Neg),
+        .Parity_Flag(Parity),
+        .SLT_Flag(SLT)
+    );
+
+    integer i, errors = 0;
+
+    // Reference model (Golden)
+    function [3:0] golden_result;
+        input [3:0] A, B, Op;
+        reg   [3:0] R;
+        reg   signed [3:0] sA, sB;
+        reg   [1:0] shamt, mode;
+    begin
+        sA = A; sB = B;
+        shamt = B[1:0];
+        mode  = B[3:2];
+
+        case (Op)
+
+            4'b0000: R = A + B;                 // ADD
+            4'b0001: R = A - B;                 // SUB
+            4'b0010: R = A & B;                 // AND
+            4'b0011: R = A | B;                 // OR
+            4'b0100: R = A ^ B;                 // XOR
+
+            4'b0101: R = (sA < sB) ? 4'd1 : 4'd0; // SLT
+
+            // SHIFT
+            4'b0110: begin
+                case (mode)
+                    2'b00: R = A << shamt;                   // SLL
+                    2'b01: R = A >> shamt;                   // SRL
+                    2'b10: R = sA >>> shamt;                 // SRA
+                    default: R = 4'd0;
+                endcase
+            end
+
+            // ROTATE
+            4'b0111: begin
+                case (mode)
+                    2'b00: R = (A << shamt) | (A >> (4-shamt)); // ROL
+                    2'b01: R = (A >> shamt) | (A << (4-shamt)); // ROR
+                    default: R = 4'd0;
+                endcase
+            end
+
+            default: R = 4'd0;
+        endcase
+
+        golden_result = R;
+    end
+    endfunction
+
+    // Flag model
+    function [2:0] golden_flags;
+        input [3:0] R;
+        reg Z, N, P;
+    begin
+        Z = (R == 4'd0);
+        N = R[3];
+        P = ^R;
+        golden_flags = {Z, N, P};
+    end
+    endfunction
+
+    // Test routine
+    task run_test;
+        input [3:0] A0, B0, Op0;
+        reg [3:0] expR;
+        reg [2:0] expFlags;
+    begin
+        A = A0; B = B0; Op = Op0;
+        #1;
+
+        expR = golden_result(A0, B0, Op0);
+        expFlags = golden_flags(expR);
+
+        if ((Result !== expR) ||
+            (Zero !== expFlags[2]) ||
+            (Neg !== expFlags[1]) ||
+            (Parity !== expFlags[0]))
+        begin
+            $display("FAIL: A=%h B=%h Op=%b | Expected R=%h, Got R=%h",
+                      A0, B0, Op0, expR, Result);
+            errors = errors + 1;
+        end
+        else begin
+            $display("PASS: A=%h B=%h Op=%b => R=%h", A0, B0, Op0, Result);
+        end
+    end
+    endtask
+
+    initial begin
+        $display("==== DAY-5 ALU TEST START ====");
+
+        // Directed tests
+        run_test(4'h5, 4'h1, 4'b0110);  // SLL
+        run_test(4'hA, 4'h2, 4'b0110);  // SRL
+        run_test(4'h9, 4'h1, 4'b0110);  // SRA
+        run_test(4'h6, 4'h1, 4'b0111);  // ROL
+        run_test(4'h9, 4'h1, 4'b0111);  // ROR
+
+        // Random Tests
+        for (i=0; i<100; i=i+1) begin
+            run_test($random, $random, $random);
+        end
+
+        $display("==== TEST COMPLETE. Errors=%0d ====", errors);
+        $finish;
+    end
+
+endmodule
+
 
