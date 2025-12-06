@@ -1,4 +1,4 @@
-**DAY-6 — Multicycle ALU (Start/Busy/Valid Handshake)
+##**DAY-6 — Multicycle ALU (Start/Busy/Valid Handshake)
 
 Project Documentation**
 
@@ -73,19 +73,10 @@ Testbench Features
 ✔ Busy-validation checking
 ✔ Latency validation for MUL & ADD/SUB
 
-Simulation Output
 
-Your run produced:
 
-==== DAY-6 TEST START ====
-PASS: A=4 B=1 Op=101 => R=0
-PASS: A=3 B=13 Op=010 => R=1
-PASS: A=5 B=2 Op=010 => R=0
-...
-PASS: A=10 B=1 Op=010 => R=0
-==== TEST COMPLETE. Errors=0 ====
+##**Waveform verification**
 
-**Waveform verification**
 <img width="1898" height="636" alt="DAY6" src="https://github.com/user-attachments/assets/727ae5ef-52d4-4c83-be8c-689e63e2a95f" />
 
 <img width="991" height="525" alt="DAY6Tcl" src="https://github.com/user-attachments/assets/30ecd3af-3548-49f7-b0a3-a4c8fe2405e7" />
