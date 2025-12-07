@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 07.12.2025 22:56:43
+// Create Date: 07.12.2025 22:57:09
 // Design Name: 
-// Module Name: priority_encoder_8
+// Module Name: barrel_shifter_8
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -19,25 +19,20 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module priority_encoder_8 (
+
+module barrel_shifter_8 (
     input  wire [7:0] in,
-    output reg  [2:0] out,
-    output reg        valid
+    input  wire [2:0] shamt,
+    input  wire [1:0] mode,   // 00=LL, 01=LR, 10=RL, 11=RR
+    output reg  [7:0] out
 );
     always @(*) begin
-        valid = |in;
-        casex (in)
-            8'b1xxxxxxx: out = 3'd7;
-            8'b01xxxxxx: out = 3'd6;
-            8'b001xxxxx: out = 3'd5;
-            8'b0001xxxx: out = 3'd4;
-            8'b00001xxx: out = 3'd3;
-            8'b000001xx: out = 3'd2;
-            8'b0000001x: out = 3'd1;
-            8'b00000001: out = 3'd0;
-            default:     out = 3'd0;
+        case (mode)
+            2'b00: out = in << shamt;
+            2'b01: out = in >> shamt;
+            2'b10: out = (in << shamt) | (in >> (8 - shamt));  // rot left
+            2'b11: out = (in >> shamt) | (in << (8 - shamt));  // rot right
         endcase
     end
 endmodule
-
 
