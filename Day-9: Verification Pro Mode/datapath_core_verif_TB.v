@@ -1,9 +1,4 @@
 `timescale 1ns/1ps
-//
-// datapath_core_verif_TB.v
-// Day-9: Randomized verification + scoreboard + coverage counters
-//
-
 module datapath_core_verif_TB;
 
     // Adjustable params
@@ -22,7 +17,7 @@ module datapath_core_verif_TB;
     wire             Carry;
     wire             Overflow;
 
-    // Instantiate DUT (assumes datapath_core.v exists and has same port order)
+    // Instantiate DUT
     datapath_core #( .WIDTH(WIDTH) ) dut (
         .A(A),
         .B(B),
@@ -34,14 +29,10 @@ module datapath_core_verif_TB;
         .Overflow(Overflow)
     );
 
-    // Scoreboard / golden model variables
-    reg  [WIDTH-1:0] exp_result;
-    reg              exp_zero, exp_neg, exp_carry, exp_ovf;
-
     // Coverage counters & stats
     integer errors;
     integer i;
-    integer op_count [0:15];      // opcode counts
+    integer op_count [0:7];      // only ops 0..7 supported
     integer cov_slt_true;
     integer cov_slt_false;
     integer cov_carry_true;
@@ -50,7 +41,26 @@ module datapath_core_verif_TB;
     // File for coverage dump
     integer fd;
 
-    // Simple directed tests to sanity-check
+    // -------------------------
+    // utility: integer clog2
+    // -------------------------
+    function integer clog2;
+        input integer value;
+        integer v;
+        begin
+            v = 0;
+            value = value - 1;
+            while (value > 0) begin
+                value = value >> 1;
+                v = v + 1;
+            end
+            clog2 = v;
+        end
+    endfunction
+
+    // -------------------------
+    // directed tests
+    // -------------------------
     task directed_tests;
         begin
             $display("=== Day-9 Directed tests start ===");
@@ -74,7 +84,10 @@ module datapath_core_verif_TB;
         end
     endtask
 
-    // Golden model: compute expected result and flags
+    // -------------------------
+    // golden model (pure combinational calculation inside task)
+    // returns values via task outputs into caller-local regs
+    // -------------------------
     task golden;
         input [WIDTH-1:0] a;
         input [WIDTH-1:0] b;
@@ -86,8 +99,9 @@ module datapath_core_verif_TB;
         output             v;
         reg [WIDTH:0] tmp;
         reg signed [WIDTH-1:0] sa, sb;
+        integer shamt;
         begin
-            // default
+            // defaults
             r = {WIDTH{1'b0}};
             c = 1'b0;
             v = 1'b0;
@@ -97,14 +111,13 @@ module datapath_core_verif_TB;
                     tmp = a + b;
                     r   = tmp[WIDTH-1:0];
                     c   = tmp[WIDTH];
-                    // signed overflow
                     v = (a[WIDTH-1] == b[WIDTH-1]) && (r[WIDTH-1] != a[WIDTH-1]);
                 end
 
                 4'b0001: begin // SUB
                     tmp = a - b;
                     r   = tmp[WIDTH-1:0];
-                    c   = tmp[WIDTH]; // borrow indicator (as implemented in DUT)
+                    c   = tmp[WIDTH]; // borrow-ish
                     v = (a[WIDTH-1] != b[WIDTH-1]) && (r[WIDTH-1] != a[WIDTH-1]);
                 end
 
@@ -120,11 +133,14 @@ module datapath_core_verif_TB;
                 end
 
                 4'b0110: begin // SLL
-                    r = a << b[($clog2(WIDTH)-1):0];
+                    // compute runtime shift amount safely
+                    shamt = b % WIDTH;
+                    r = a << shamt;
                 end
 
                 4'b0111: begin // SRL
-                    r = a >> b[($clog2(WIDTH)-1):0];
+                    shamt = b % WIDTH;
+                    r = a >> shamt;
                 end
 
                 default: r = {WIDTH{1'b0}};
@@ -135,11 +151,14 @@ module datapath_core_verif_TB;
         end
     endtask
 
-    // check and update counters
+    // -------------------------
+    // check_and_record: compute expected + compare
+    // -------------------------
     task check_and_record;
         reg [WIDTH-1:0] golden_r;
         reg golden_z, golden_n, golden_c, golden_v;
         begin
+            // compute golden results
             golden(A, B, Op, golden_r, golden_z, golden_n, golden_c, golden_v);
 
             // opcode coverage
@@ -182,7 +201,9 @@ module datapath_core_verif_TB;
         end
     endtask
 
+    // -------------------------
     // initialize
+    // -------------------------
     initial begin
         // reset stats
         errors = 0;
@@ -190,7 +211,7 @@ module datapath_core_verif_TB;
         cov_slt_false = 0;
         cov_carry_true = 0;
         cov_ovf_true = 0;
-        for (i=0; i<16; i=i+1) op_count[i] = 0;
+        for (i=0; i<8; i=i+1) op_count[i] = 0;
 
         // run directed quick checks
         directed_tests();
@@ -198,15 +219,16 @@ module datapath_core_verif_TB;
         // run randomized tests
         $display("=== Day-9: Running %0d randomized tests ===", NUM_TESTS);
         for (i = 0; i < NUM_TESTS; i = i + 1) begin
-            // choose random op 0..7 (limit to supported ops)
+            // choose random op 0..7
             Op = $unsigned($random) % 8;
 
             // random operands
             A = $random;
             B = $random;
 
-            // shorten B for shift amount to avoid expensive shifts out of range
-            B = B & ({WIDTH{1'b1}}); // keep width bits
+            // mask to WIDTH bits
+            A = A & ({WIDTH{1'b1}});
+            B = B & ({WIDTH{1'b1}});
 
             #1; // wait combinational settle
 
@@ -243,4 +265,3 @@ module datapath_core_verif_TB;
     end
 
 endmodule
-
