@@ -1,1 +1,15 @@
+op, count
+0, 2
+1, 1
+2, 1
+3, 2
+4, 2
+5, 6
+6, 2
+7, 2
+
+cov_slt_true, 3
+cov_slt_false, 3
+cov_carry_true, 1
+cov_ovf_true, 0
 
