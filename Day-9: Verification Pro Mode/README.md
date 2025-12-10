@@ -16,6 +16,13 @@ Run instructions:
 
 
  ##waveform
+ #For 2000 test
+ <img width="1872" height="733" alt="DAY9 1" src="https://github.com/user-attachments/assets/8e0e394f-cd4f-4041-a65e-38264271e928" />
+
+ #For 10 test
+ <img width="1912" height="857" alt="DAY9" src="https://github.com/user-attachments/assets/24f7266c-c667-49b2-a12b-ac34451209fa" />
+
+
 
  
 
