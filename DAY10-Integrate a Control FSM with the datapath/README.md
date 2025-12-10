@@ -33,9 +33,14 @@ All tests passed in Vivado XSim (1,000 ns run).
 
 
 #waveform image
+
 <img width="953" height="328" alt="image" src="https://github.com/user-attachments/assets/85ccd87d-c2af-47d4-a54f-fc05ae98fbcf" />
 
+
+
+
 #TCL CONSOLE OUTPUT 
+
 <img width="440" height="350" alt="image" src="https://github.com/user-attachments/assets/6b910772-4d68-4b77-9b00-92d140cc6d5f" />
 
 
