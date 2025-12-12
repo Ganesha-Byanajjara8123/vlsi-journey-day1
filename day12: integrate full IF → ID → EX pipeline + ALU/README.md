@@ -47,11 +47,13 @@ into a complete datapath:
 <img width="947" height="322" alt="image" src="https://github.com/user-attachments/assets/f36b7b8f-4df1-45a8-8b53-4e791d4bd405" />
 
 
- — pipeline behavior visualized
+
 
  
 ###(WITH ZOOM from 00ns - 150ns)
 <img width="940" height="380" alt="DAY12 1" src="https://github.com/user-attachments/assets/7267b771-ed4b-45f7-b5a0-71c5f70edaeb" />
+
+
 
 
 ## 🧪 Simulation Behavior (Expected)
