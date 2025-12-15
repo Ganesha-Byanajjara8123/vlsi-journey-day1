@@ -1,4 +1,4 @@
-DAY-15: Pipeline Hazard Detection & Data Forwarding (RTL)
+##DAY-15: Pipeline Hazard Detection & Data Forwarding (RTL)
 Objective
 
 Implement and verify pipeline control mechanisms required for a real CPU:
