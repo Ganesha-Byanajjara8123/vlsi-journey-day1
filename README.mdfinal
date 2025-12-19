@@ -15,9 +15,9 @@ Data forwarding unit (EX/MEM and MEM/WB)
 
 
 
-Tools
+Tool:Vivado-AMD
 
-Vivado-AMD
+
 
 Learning Outcome
 Gained hands-on experience in CPU micro-architecture, pipeline hazards, and verification-driven RTL design.
