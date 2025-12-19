@@ -1,1 +1,23 @@
+Project: Pipelined CPU with Hazard Detection
 
+Overview
+This project implements a simplified pipelined CPU architecture to demonstrate core micro-architecture concepts used in modern processors.
+
+Key Features
+
+Instruction Fetch (IF), Decode (ID), Execute (EX), Write-Back (WB)
+
+Pipeline registers (IF/ID, ID/EX, EX/WB)
+
+Load-use hazard detection (stall + flush)
+
+Data forwarding unit (EX/MEM and MEM/WB)
+
+
+
+Tools
+
+Vivado-AMD
+
+Learning Outcome
+Gained hands-on experience in CPU micro-architecture, pipeline hazards, and verification-driven RTL design.
